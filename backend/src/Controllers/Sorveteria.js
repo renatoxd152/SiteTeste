@@ -1,6 +1,5 @@
 import express from 'express';
-import Sorvete from '../model/SorveteriaModel.js';
-
+import Sorvete from '../model/Sorveteria_Model.js';
 const sorvete = express();
 sorvete.use(express.json());
 
