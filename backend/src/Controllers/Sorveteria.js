@@ -41,9 +41,34 @@ sorvete.get('/sorvete/nome/:id', async (req, res) => {
   }
 });
 
+sorvete.put('/sorvetes/:id',async (req, res) => {
+  try {
+    const sorveteId = req.params.id;
+    const { nome, quantidade,preco } = req.body;
 
+    const sorveteToUpdate = await Sorvete.findByPk(sorveteId);
+    if (!sorveteToUpdate) {
+      return res.status(404).json({ mensagem: 'Sorvete não encontrado' });
+    }
 
+    sorveteToUpdate.nome = nome;
+    sorveteToUpdate.quantidade = quantidade;
+    sorveteToUpdate.preco = preco;
 
+    await sorveteToUpdate.save();
+
+    res.status(200).json({
+      mensagem:"Sorvete atualizado com sucesso!",
+      id: sorveteToUpdate.id,
+      nome: sorveteToUpdate.nome,
+      quantidade: sorveteToUpdate.quantidade,
+      preco:sorveteToUpdate.preco
+    });
+  } catch (erro) {
+    console.error(erro);
+    res.status(500).json({ mensagem: 'Erro interno do servidor' });
+  }
+});
 
 sorvete.post('/sorvetes',async (req, res) => {
     try {
