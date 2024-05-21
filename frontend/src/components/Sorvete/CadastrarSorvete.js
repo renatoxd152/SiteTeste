@@ -67,6 +67,7 @@ export const Sorvetes=()=>
         <div>
     
           <Barra />
+			    <h1>Cadastrar Sorvete</h1>
           <form className="container mt-4">
           <div className={`alert ${mensagem ? 'alert-success' : 'd-none'}`} role="alert">
           {mensagem}
