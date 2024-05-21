@@ -61,6 +61,10 @@ export const Sorvetes = () => {
     }
   };
 
+	function voltar() {
+		navigate("/sorvetes/listar");
+	}
+
   return (
     <div>
       <Barra />
@@ -82,6 +86,9 @@ export const Sorvetes = () => {
         <label>Preço</label>
         <input type="number" className="form-control" value={preco} onChange={handlePreco} />
         <br />
+        <button type="button" className="btn btn-secondary me-2" onClick={voltar}>
+          Voltar
+        </button>
         <button type="button" className="btn btn-primary" onClick={handleCadastrarSorvete}>
           Cadastrar Sorvete
         </button>
