@@ -8,7 +8,7 @@ const Listar = () => {
 
   const handleExcluirSorvete = async (sorveteId) => {
     try {
-      const response = await fetch(http://localhost:3000/sorvetes/${sorveteId}, 
+      const response = await fetch(`http://localhost:3000/sorvetes/${sorveteId}`, 
       {
         method: 'DELETE',
         headers: {
