@@ -37,10 +37,10 @@ const Barra = () => {
               className={`dropdown-menu ${submenuAberto === 'sorvetes' ? 'show' : ''}`}
               aria-labelledby="sorvetesDropdown"
             >
-              <Link className="dropdown-item" to="/sorvetes">
+              <Link className="dropdown-item" to="/sorvete">
                 Cadastrar Sorvetes
               </Link>
-              <Link className="dropdown-item" to="/sorvetes/listar">
+              <Link className="dropdown-item" to="/">
                 Listar Sorvetes
               </Link>
             </div>
