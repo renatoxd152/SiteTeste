@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
+import Barra from "../util/Barra";
 
 const Listar = () => {
   const [sorvetes, setSorvetes] = useState([]);
@@ -71,6 +72,7 @@ const Listar = () => {
 
   return (
     <div>
+    <Barra/>
     <h1>Lista de Sorvetes</h1>
       <div className={`alert ${mensagem ? 'alert-success' : 'd-none'}`} role="alert">
           {mensagem}
@@ -100,7 +102,7 @@ const Listar = () => {
                 </button>
               </td>
               <td>
-              <Link to={`editarSorvete/${sorvete.id}`} className="btn btn-primary">
+              <Link to={`sorvete/${sorvete.id}`} className="btn btn-primary">
                     Atualizar
                 </Link>
               </td>
