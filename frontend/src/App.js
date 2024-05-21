@@ -1,6 +1,6 @@
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import './App.css';
-import { Sorvetes } from './components/Sorvete/CadastrarSorvete';
+import Sorvetes from './components/Sorvete/CadastrarSorvete';
 import Listar from "./components/Sorvete/ListarSorvete";
 import EditarSorvete from './components/Sorvete/EditarSorvetes';
 

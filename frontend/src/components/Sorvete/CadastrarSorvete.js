@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import Barra from '../util/Barra';
 
-export const Sorvetes = () => {
+const Sorvetes = () => {
   const [ nome, setNome ] = useState("");
   const [ quantidade, setQuantidade ] = useState("");
   const [ preco, setPreco ] = useState("");
@@ -99,3 +99,5 @@ export const Sorvetes = () => {
     </div>
   );
 };
+
+export default Sorvetes;
