@@ -1,5 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import Barra from '../util/Barra';
 
 export const Sorvetes = () => {
@@ -9,6 +10,8 @@ export const Sorvetes = () => {
 
   const [ mensagem, setMensagem ] = useState("");
   const [ erro, setErro ] = useState("");
+
+  const navigate = useNavigate();
 
   const handleNome = (e) => {
     setNome(e.target.value);
