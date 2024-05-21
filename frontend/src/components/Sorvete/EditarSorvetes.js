@@ -34,7 +34,7 @@ const EditarSorvete = () => {
 
 			const data = await response.json();
 
-			navigate("/sorvetes/listar");
+			navigate("/");
 
 			setMensagem(data.mensagem);
 		} catch (error) {
@@ -43,7 +43,7 @@ const EditarSorvete = () => {
 	};
 
 	function voltar() {
-		navigate("/sorvetes/listar");
+		navigate("/");
 	}
 
 	return (

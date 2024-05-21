@@ -65,7 +65,7 @@ export const Sorvetes = () => {
   };
 
 	function voltar() {
-		navigate("/sorvetes/listar");
+		navigate("/");
 	}
 
   return (
