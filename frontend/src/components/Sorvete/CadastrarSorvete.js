@@ -1,5 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useState } from "react";
+import Barra from '../util/Barra';
 export const Sorvetes=()=>
 {
     const[nome,setNome] = useState("");
@@ -65,7 +66,7 @@ export const Sorvetes=()=>
       return (
         <div>
     
-    
+          <Barra />
           <form className="container mt-4">
           <div className={`alert ${mensagem ? 'alert-success' : 'd-none'}`} role="alert">
           {mensagem}
