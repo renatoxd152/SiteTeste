@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate, useParams } from 'react-router-dom';
 import Barra from "../util/Barra";
-
 const EditarSorvete = () => {
 	const { id } = useParams();
 	const [ mensagem, setMensagem ] = useState("");
@@ -48,7 +47,7 @@ const EditarSorvete = () => {
 
 	return (
 		<div>
-			<Barra />
+			<Barra/>
 			<h1>Editar Sorvete</h1>
 			<form className="container mt-4">
 				<span>{mensagem}</span>

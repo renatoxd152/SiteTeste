@@ -1,6 +1,9 @@
+import cors from 'cors';
 import sorvete from './src/Controllers/Sorveteria.js';
 import app from "./src/index.js";
 const port = 3000;
+
+app.use(cors());
 
 app.listen(port,()=>
 {
