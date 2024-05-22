@@ -3,7 +3,7 @@ import Sorvete from '../model/Sorveteria_Model.js';
 const sorvete = express();
 sorvete.use(express.json());
 
-sorvete.get('api/sorvetes', async (req, res) => {
+sorvete.get('/api/sorvetes', async (req, res) => {
   try {
     
     const sorvetesDoBanco = await Sorvete.findAll();
@@ -22,7 +22,7 @@ sorvete.get('api/sorvetes', async (req, res) => {
   }
 });
 
-sorvete.get('api/sorvete/nome/:id', async (req, res) => {
+sorvete.get('/api/sorvete/nome/:id', async (req, res) => {
   try {
     const sorveteId = req.params.id;
 
@@ -41,7 +41,7 @@ sorvete.get('api/sorvete/nome/:id', async (req, res) => {
   }
 });
 
-sorvete.put('api/sorvetes/:id',async (req, res) => {
+sorvete.put('/api/sorvetes/:id',async (req, res) => {
   try {
     const sorveteId = req.params.id;
     const { nome, quantidade,preco } = req.body;
@@ -70,7 +70,7 @@ sorvete.put('api/sorvetes/:id',async (req, res) => {
   }
 });
 
-sorvete.post('api/sorvetes',async (req, res) => {
+sorvete.post('/api/sorvetes',async (req, res) => {
     try {
       const { nome, quantidade,preco } = req.body;
   
@@ -90,7 +90,7 @@ sorvete.post('api/sorvetes',async (req, res) => {
     }
   });
   
-  sorvete.delete('api/sorvetes/:id',async (req, res) => {
+  sorvete.delete('/api/sorvetes/:id',async (req, res) => {
     try {
       const sorveteId = req.params.id;
 
