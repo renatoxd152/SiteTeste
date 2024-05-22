@@ -47,7 +47,7 @@ const Sorvetes = () => {
     }
 
     try {
-      const response = await fetch('http://localhost:3000/sorvetes', {
+      const response = await fetch('/api/sorvetes', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

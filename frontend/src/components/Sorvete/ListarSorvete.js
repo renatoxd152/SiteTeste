@@ -9,7 +9,7 @@ const Listar = () => {
 
   async function handleExcluirSorvete (sorveteId) {
     try {
-      const response = await fetch(`http://localhost:3000/sorvetes/${sorveteId}`, {
+      const response = await fetch(`/api/sorvetes/${sorveteId}`, {
           method: 'DELETE',
           headers: {
             'Content-Type': 'application/json',
@@ -45,7 +45,7 @@ const Listar = () => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch('http://localhost:3000/sorvetes', {
+        const response = await fetch('api/sorvetes', {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json',
