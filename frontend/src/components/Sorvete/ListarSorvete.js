@@ -3,38 +3,35 @@ import { Link } from 'react-router-dom';
 import Barra from "../util/Barra";
 
 const Listar = () => {
-  const [sorvetes, setSorvetes] = useState([]);
-  const [mensagem, setMensagem] = useState('');
-  const[erro,setErro] = useState("");
+  const [ sorvetes, setSorvetes ] = useState([]);
+  const [ mensagem, setMensagem ] = useState('');
+  const [ erro, setErro ] = useState("");
 
-  const handleExcluirSorvete = async (sorveteId) => {
+  async function handleExcluirSorvete (sorveteId) {
     try {
-      const response = await fetch(`http://localhost:3000/sorvetes/${sorveteId}`, 
-      {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
+      const response = await fetch(`http://localhost:3000/sorvetes/${sorveteId}`, {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json',
+          }
+        }
+      );
 
       const data = await response.json();
 
       if (response.ok) {
-        
         const updatedSorvetes = sorvetes.filter((sorvete) => sorvete.id !== sorveteId);
+
         setSorvetes(updatedSorvetes);
         setMensagem(data.mensagem);
-        if(data.flag == false)
-        {
+
+        if (data.flag == false) {
           setErro(data.mensagem);
           setMensagem("");
-        }
-        else
-        {
+        } else {
           setMensagem(data.mensagem);
           setErro("");
         }
-
       } else {
         setErro(data.mensagem);
         setMensagem("");
@@ -43,20 +40,18 @@ const Listar = () => {
       console.error('Erro ao excluir sorvete:', error);
       setMensagem('Erro ao excluir sorvete');
     }
-  };
+  }
 
- 
-  
   useEffect(() => {
-    const fetchData = async () => {
+    async function fetchData() {
       try {
-        
         const response = await fetch('http://localhost:3000/sorvetes', {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        });
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+            }
+          }
+        );
 
         const data = await response.json();
 
@@ -69,17 +64,16 @@ const Listar = () => {
     fetchData();
   });
 
-
   return (
     <div>
-    <Barra/>
-    <h1>Lista de Sorvetes</h1>
+      <Barra />
+      <h1>Lista de Sorvetes</h1>
       <div className={`alert ${mensagem ? 'alert-success' : 'd-none'}`} role="alert">
-          {mensagem}
-        </div>
-        <div className={`alert ${erro ? 'alert-danger' : 'd-none'}`} role="alert">
-          {erro}
-        </div>
+        {mensagem}
+      </div>
+      <div className={`alert ${erro ? 'alert-danger' : 'd-none'}`} role="alert">
+        {erro}
+      </div>
       <table className="table">
         <thead className="thead-dark">
           <tr>
@@ -102,8 +96,8 @@ const Listar = () => {
                 </button>
               </td>
               <td>
-              <Link to={`sorvete/${sorvete.id}`} className="btn btn-primary">
-                    Atualizar
+                <Link to={`sorvete/${sorvete.id}`} className="btn btn-primary">
+                  Atualizar
                 </Link>
               </td>
             </tr>
@@ -112,6 +106,6 @@ const Listar = () => {
       </table>
     </div>
   );
-};
+}
 
 export default Listar;
