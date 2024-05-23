@@ -47,21 +47,19 @@ const Sorvetes = () => {
     }
 
     try {
-      const response = await fetch('/api/sorvetes', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ nome: nome, quantidade: quantidade, preco: preco }),
-      });
-
-      const data = await response.json();
-
-      setMensagem(data.mensagem);
+      const novoSorvete = { nome, quantidade, preco };
+      const sorvetesLocalStorage = JSON.parse(localStorage.getItem('sorvetes')) || [];
+      sorvetesLocalStorage.push(novoSorvete);
+      localStorage.setItem('sorvetes', JSON.stringify(sorvetesLocalStorage));
+  
+      setMensagem("Sorvete cadastrado com sucesso!");
       setErro("");
     } catch (error) {
       console.error('Erro ao cadastrar o sorvete!');
     }
+
+
+
   };
 
 	function voltar() {

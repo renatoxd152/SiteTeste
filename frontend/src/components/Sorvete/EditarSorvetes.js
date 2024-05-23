@@ -1,71 +1,78 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from 'react-router-dom';
 import Barra from "../util/Barra";
+
 const EditarSorvete = () => {
-	const { id } = useParams();
-	const [ mensagem, setMensagem ] = useState("");
-	const [ nome, setNome ] = useState("");
-	const [ quantidade, setQuantidade ] = useState("");
-	const [ preco, setPreco ] = useState("");
-	const navigate = useNavigate();
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const [mensagem, setMensagem] = useState("");
+  const [nome, setNome] = useState("");
+  const [quantidade, setQuantidade] = useState("");
+  const [preco, setPreco] = useState("");
 
-	function handleNome(e) {
-		setNome(e.target.value);
-	}
+  useEffect(() => {
+    
+    const sorvetesLocalStorage = JSON.parse(localStorage.getItem('sorvetes')) || [];
+    const sorvete = sorvetesLocalStorage[id];
+    if (sorvete) {
+      setNome(sorvete.nome);
+      setQuantidade(sorvete.quantidade);
+      setPreco(sorvete.preco);
+    }
+  }, [id]);
 
-	function handleQuantidade(e) {
-		setQuantidade(e.target.value);
-	}
+  function handleNome(e) {
+    setNome(e.target.value);
+  }
 
-	function handlePreco(e) {
-		setPreco(e.target.value);
-	}
+  function handleQuantidade(e) {
+    setQuantidade(e.target.value);
+  }
 
-	async function handleEditarSorvete() {
-		try {
-			const response = await fetch(`/api/sorvetes/${id}`, {
-				method: 'PUT',
-				headers: {
-					'Content-Type': 'application/json'
-				},
-				body: JSON.stringify({ nome: nome, quantidade: quantidade, preco: preco }),
-			});
+  function handlePreco(e) {
+    setPreco(e.target.value);
+  }
 
-			const data = await response.json();
+  async function handleEditarSorvete() {
+    try {
+      const sorvetesLocalStorage = JSON.parse(localStorage.getItem('sorvetes')) || [];
+      const updatedSorvetes = [...sorvetesLocalStorage];
+      updatedSorvetes[id] = { nome, quantidade, preco };
 
-			navigate("/");
+      localStorage.setItem('sorvetes', JSON.stringify(updatedSorvetes));
+      setMensagem("Sorvete editado com sucesso!");
 
-			setMensagem(data.mensagem);
-		} catch (error) {
-			console.error('Erro ao cadastrar o sorvete!' + error);
-		}
-	};
+      navigate("/");
+    } catch (error) {
+      console.error('Erro ao editar o sorvete: ', error);
+    }
+  };
 
-	function voltar() {
-		navigate("/");
-	}
+  function voltar() {
+    navigate("/");
+  }
 
-	return (
-		<div>
-			<Barra/>
-			<h1>Editar Sorvete</h1>
-			<form className="container mt-4">
-				<span>{mensagem}</span>
-				<br />
-				<label>Nome do sorvete do sorvete</label>
-				<input type="text" className="form-control" value={nome} onChange={handleNome} />
-				<br />
-				<label>Quantidade</label>
-				<input type="number" className="form-control" value={quantidade} onChange={handleQuantidade} />
-				<br />
-				<label>Preço</label>
-				<input type="number" className="form-control" value={preco} onChange={handlePreco} />
-				<br />
-				<button type="button" className="btn btn-secondary me-2" onClick={voltar}>Voltar</button>
-				<button type="button" className="btn btn-primary" onClick={handleEditarSorvete}>Editar Sorvete</button>
-			</form>
-		</div>
-	)
+  return (
+    <div>
+      <Barra />
+      <h1>Editar Sorvete</h1>
+      <form className="container mt-4">
+        <span>{mensagem}</span>
+        <br />
+        <label>Nome do sorvete</label>
+        <input type="text" className="form-control" value={nome} onChange={handleNome} />
+        <br />
+        <label>Quantidade</label>
+        <input type="number" className="form-control" value={quantidade} onChange={handleQuantidade} />
+        <br />
+        <label>Preço</label>
+        <input type="number" className="form-control" value={preco} onChange={handlePreco} />
+        <br />
+        <button type="button" className="btn btn-secondary me-2" onClick={voltar}>Voltar</button>
+        <button type="button" className="btn btn-primary" onClick={handleEditarSorvete}>Editar Sorvete</button>
+      </form>
+    </div>
+  )
 }
 
 export default EditarSorvete;

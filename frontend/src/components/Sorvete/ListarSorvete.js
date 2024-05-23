@@ -5,64 +5,20 @@ import Barra from "../util/Barra";
 const Listar = () => {
   const [ sorvetes, setSorvetes ] = useState([]);
   const [ mensagem, setMensagem ] = useState('');
-  const [ erro, setErro ] = useState("");
-
-  async function handleExcluirSorvete (sorveteId) {
-    try {
-      const response = await fetch(`/api/sorvetes/${sorveteId}`, {
-          method: 'DELETE',
-          headers: {
-            'Content-Type': 'application/json',
-          }
-        }
-      );
-
-      const data = await response.json();
-
-      if (response.ok) {
-        const updatedSorvetes = sorvetes.filter((sorvete) => sorvete.id !== sorveteId);
-
-        setSorvetes(updatedSorvetes);
-        setMensagem(data.mensagem);
-
-        if (data.flag == false) {
-          setErro(data.mensagem);
-          setMensagem("");
-        } else {
-          setMensagem(data.mensagem);
-          setErro("");
-        }
-      } else {
-        setErro(data.mensagem);
-        setMensagem("");
-      }
-    } catch (error) {
-      console.error('Erro ao excluir sorvete:', error);
-      setMensagem('Erro ao excluir sorvete');
-    }
-  }
-
+console.log(sorvetes);
   useEffect(() => {
-    async function fetchData() {
-      try {
-        const response = await fetch('/api/sorvetes', {
-            method: 'GET',
-            headers: {
-              'Content-Type': 'application/json',
-            }
-          }
-        );
+    // Recuperar os sorvetes do localStorage
+    const sorvetesLocalStorage = JSON.parse(localStorage.getItem('sorvetes')) || [];
+    setSorvetes(sorvetesLocalStorage);
+  }, []);
 
-        const data = await response.json();
-
-        setSorvetes(data);
-      } catch (error) {
-        console.error("Erro ao buscar sorvetes:", error);
-      }
-    }
-
-    fetchData();
-  });
+  const handleExcluirSorvete = (sorveteIndex) => {
+    // Remover o sorvete do array e atualizar o localStorage
+    const updatedSorvetes = sorvetes.filter((_, index) => index !== sorveteIndex);
+    localStorage.setItem('sorvetes', JSON.stringify(updatedSorvetes));
+    setSorvetes(updatedSorvetes);
+    setMensagem("Sorvete excluído com sucesso!");
+  };
 
   return (
     <div>
@@ -71,9 +27,7 @@ const Listar = () => {
       <div className={`alert ${mensagem ? 'alert-success' : 'd-none'}`} role="alert">
         {mensagem}
       </div>
-      <div className={`alert ${erro ? 'alert-danger' : 'd-none'}`} role="alert">
-        {erro}
-      </div>
+      
       <table className="table">
         <thead className="thead-dark">
           <tr>
@@ -85,18 +39,18 @@ const Listar = () => {
           </tr>
         </thead>
         <tbody>
-          {sorvetes.map((sorvete) => (
+          {sorvetes.map((sorvete,index) => (
             <tr key={sorvete.id}>
               <td>{sorvete.nome}</td>
               <td>{sorvete.quantidade}</td>
               <td>{sorvete.preco}</td>
               <td>
-                <button className="btn btn-danger" onClick={() => handleExcluirSorvete(sorvete.id)}>
+                <button className="btn btn-danger" onClick={() => handleExcluirSorvete(index)}>
                   Excluir
                 </button>
               </td>
               <td>
-                <Link to={`sorvete/${sorvete.id}`} className="btn btn-primary">
+                <Link to={`sorvete/${index}`} className="btn btn-primary">
                   Atualizar
                 </Link>
               </td>
