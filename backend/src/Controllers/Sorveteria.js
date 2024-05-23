@@ -73,7 +73,7 @@ sorvete.put('/api/sorvetes/:id',async (req, res) => {
 sorvete.post('/api/sorvetes',async (req, res) => {
     try {
       const { nome, quantidade,preco } = req.body;
-  
+      console.log(nome);
       const novoSorvete = await Sorvete.create({ nome, quantidade,preco });
         
       res.status(201).json({
