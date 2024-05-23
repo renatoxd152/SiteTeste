@@ -9,7 +9,7 @@ const EditarSorvete = () => {
   const [nome, setNome] = useState("");
   const [quantidade, setQuantidade] = useState("");
   const [preco, setPreco] = useState("");
-
+  const [ erro, setErro ] = useState("");
   useEffect(() => {
     
     const sorvetesLocalStorage = JSON.parse(localStorage.getItem('sorvetes')) || [];
@@ -34,6 +34,27 @@ const EditarSorvete = () => {
   }
 
   async function handleEditarSorvete() {
+    if (!nome || !quantidade || !preco) {
+      setErro("Por favor, preencha todos os campos.");
+      return;
+    }
+
+    if (isNaN(Number(quantidade)) || isNaN(Number(preco))) {
+      setErro("Quantidade e preço devem ser números válidos.");
+      return;
+    }
+
+    if (quantidade < 0) {
+      setErro("A quantidade não pode ser negativa.");
+      return;
+    }
+
+    if (preco < 0) {
+      setErro("O preço não pode ser negativo.");
+      return;
+    }
+
+
     try {
       const sorvetesLocalStorage = JSON.parse(localStorage.getItem('sorvetes')) || [];
       const updatedSorvetes = [...sorvetesLocalStorage];
@@ -57,7 +78,12 @@ const EditarSorvete = () => {
       <Barra />
       <h1>Editar Sorvete</h1>
       <form className="container mt-4">
-        <span>{mensagem}</span>
+      <div className={`alert ${mensagem ? 'alert-success' : 'd-none'}`} role="alert">
+          {mensagem}
+        </div>
+        <div className={`alert ${erro ? 'alert-danger' : 'd-none'}`} role="alert">
+          {erro}
+        </div>
         <br />
         <label>Nome do sorvete</label>
         <input type="text" className="form-control" value={nome} onChange={handleNome} />
