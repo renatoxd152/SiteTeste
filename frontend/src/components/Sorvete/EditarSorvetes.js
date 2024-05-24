@@ -39,13 +39,13 @@ const EditarSorvete = () => {
     setPreco(e.target.value);
   }
 
-  async function handleEditarSorvete() {
+  function handleEditarSorvete() {
     if (nome.trim() === "" || quantidade.trim() === "" || preco.trim() === "") {
       setErro("Por favor, preencha todos os campos.");
       return;
     }
 
-    if (isNaN(Number(quantidade)) || isNaN(Number(preco))) {
+    if (isNaN(quantidade) || isNaN(preco)) {
       setErro("Quantidade e preço devem ser números válidos.");
       return;
     }

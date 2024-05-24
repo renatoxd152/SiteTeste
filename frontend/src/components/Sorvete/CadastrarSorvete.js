@@ -25,13 +25,13 @@ const Sorvetes = () => {
     setPreco(e.target.value);
   }
 
-  const handleCadastrarSorvete = async () => {
+  function handleCadastrarSorvete() {
     if (nome.trim() === "" || quantidade.trim() === "" || preco.trim() === "") {
       setErro("Por favor, preencha todos os campos.");
       return;
     }
 
-    if (isNaN(Number(quantidade)) || isNaN(Number(preco))) {
+    if (isNaN(quantidade) || isNaN(preco)) {
       setErro("Quantidade e preço devem ser números válidos.");
       return;
     }
