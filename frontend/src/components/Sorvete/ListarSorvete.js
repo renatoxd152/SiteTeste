@@ -43,7 +43,7 @@ const Listar = () => {
         </thead>
         <tbody>
           {sorvetes.map((sorvete, index) => (
-            <tr key={sorvete.id}>
+            <tr key={JSON.stringify(sorvete)}>
               <td>{sorvete.nome}</td>
               <td>{sorvete.quantidade}</td>
               <td>{sorvete.preco}</td>
