@@ -14,7 +14,10 @@ const EditarSorvete = () => {
   const [ erro, setErro ] = useState("");
 
   useEffect(() => {
-    const sorvetesLocalStorage = JSON.parse(localStorage.getItem('sorvetes')) || [];
+    if (localStorage.getItem('sorvetes') === null)
+      localStorage.setItem('sorvetes', "[]");
+
+    const sorvetesLocalStorage = JSON.parse(localStorage.getItem('sorvetes'));
     const sorvete = sorvetesLocalStorage[id];
 
     if (sorvete) {

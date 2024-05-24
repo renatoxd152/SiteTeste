@@ -8,11 +8,15 @@ const Listar = () => {
 
   useEffect(() => {
     // Recuperar os sorvetes do localStorage
-    const sorvetesLocalStorage = JSON.parse(localStorage.getItem('sorvetes')) || [];
+    if (localStorage.getItem('sorvetes') === null)
+      localStorage.setItem('sorvetes', "[]");
+
+    const sorvetesLocalStorage = JSON.parse(localStorage.getItem('sorvetes'));
+
     setSorvetes(sorvetesLocalStorage);
   }, []);
 
-  const handleExcluirSorvete = (sorveteIndex) => {
+  function handleExcluirSorvete(sorveteIndex) {
     // Remover o sorvete do array e atualizar o localStorage
     const updatedSorvetes = sorvetes.filter((_, index) => index !== sorveteIndex);
     localStorage.setItem('sorvetes', JSON.stringify(updatedSorvetes));
@@ -38,7 +42,7 @@ const Listar = () => {
           </tr>
         </thead>
         <tbody>
-          {sorvetes.map((sorvete,index) => (
+          {sorvetes.map((sorvete, index) => (
             <tr key={sorvete.id}>
               <td>{sorvete.nome}</td>
               <td>{sorvete.quantidade}</td>

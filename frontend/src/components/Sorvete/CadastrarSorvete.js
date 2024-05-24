@@ -48,7 +48,11 @@ const Sorvetes = () => {
 
     try {
       const novoSorvete = { nome, quantidade, preco };
-      const sorvetesLocalStorage = JSON.parse(localStorage.getItem('sorvetes')) || [];
+
+      if (localStorage.getItem('sorvetes') === null)
+        localStorage.setItem('sorvetes', "[]");
+
+      const sorvetesLocalStorage = JSON.parse(localStorage.getItem('sorvetes'));
       sorvetesLocalStorage.push(novoSorvete);
       localStorage.setItem('sorvetes', JSON.stringify(sorvetesLocalStorage));
   
