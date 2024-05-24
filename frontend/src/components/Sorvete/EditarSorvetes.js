@@ -61,6 +61,14 @@ const EditarSorvete = () => {
     }
 
     const sorvetesLocalStorage = JSON.parse(localStorage.getItem('sorvetes'));
+
+    if (sorvetesLocalStorage
+      .find(sorvete => sorvete.nome === nome) !== undefined
+    ) {
+      setErro(`Já existe um sorvete ${nome}`);
+      return;
+    }
+
     sorvetesLocalStorage[id] = { nome, quantidade, preco };
 
     localStorage.setItem('sorvetes', JSON.stringify(sorvetesLocalStorage));

@@ -52,6 +52,13 @@ const Sorvetes = () => {
       localStorage.setItem('sorvetes', "[]");
 
     const sorvetesLocalStorage = JSON.parse(localStorage.getItem('sorvetes'));
+
+    if (sorvetesLocalStorage
+      .find(sorvete => sorvete.nome === nome) !== undefined
+    ) {
+      setErro(`Já existe um sorvete ${nome}`);
+      return;
+    }
     sorvetesLocalStorage.push(novoSorvete);
     localStorage.setItem('sorvetes', JSON.stringify(sorvetesLocalStorage));
 
