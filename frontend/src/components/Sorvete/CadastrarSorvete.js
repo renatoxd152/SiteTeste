@@ -57,9 +57,6 @@ const Sorvetes = () => {
     } catch (error) {
       console.error('Erro ao cadastrar o sorvete!');
     }
-
-
-
   };
 
 	function voltar() {

@@ -4,16 +4,19 @@ import Barra from "../util/Barra";
 
 const EditarSorvete = () => {
   const { id } = useParams();
+
   const navigate = useNavigate();
-  const [mensagem, setMensagem] = useState("");
-  const [nome, setNome] = useState("");
-  const [quantidade, setQuantidade] = useState("");
-  const [preco, setPreco] = useState("");
+
+  const [ mensagem, setMensagem ] = useState("");
+  const [ nome, setNome ] = useState("");
+  const [ quantidade, setQuantidade ] = useState("");
+  const [ preco, setPreco ] = useState("");
   const [ erro, setErro ] = useState("");
+
   useEffect(() => {
-    
     const sorvetesLocalStorage = JSON.parse(localStorage.getItem('sorvetes')) || [];
     const sorvete = sorvetesLocalStorage[id];
+
     if (sorvete) {
       setNome(sorvete.nome);
       setQuantidade(sorvete.quantidade);
@@ -53,7 +56,6 @@ const EditarSorvete = () => {
       setErro("O preço não pode ser negativo.");
       return;
     }
-
 
     try {
       const sorvetesLocalStorage = JSON.parse(localStorage.getItem('sorvetes')) || [];

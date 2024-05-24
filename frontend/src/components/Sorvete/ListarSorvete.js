@@ -5,7 +5,7 @@ import Barra from "../util/Barra";
 const Listar = () => {
   const [ sorvetes, setSorvetes ] = useState([]);
   const [ mensagem, setMensagem ] = useState('');
-console.log(sorvetes);
+
   useEffect(() => {
     // Recuperar os sorvetes do localStorage
     const sorvetesLocalStorage = JSON.parse(localStorage.getItem('sorvetes')) || [];
@@ -27,7 +27,6 @@ console.log(sorvetes);
       <div className={`alert ${mensagem ? 'alert-success' : 'd-none'}`} role="alert">
         {mensagem}
       </div>
-      
       <table className="table">
         <thead className="thead-dark">
           <tr>
