@@ -25,7 +25,7 @@ const EditarSorvete = () => {
       setQuantidade(sorvete.quantidade);
       setPreco(sorvete.preco);
     }
-  }, [id]);
+  }, []);
 
   function handleNome(e) {
     setNome(e.target.value);
@@ -60,18 +60,13 @@ const EditarSorvete = () => {
       return;
     }
 
-    try {
-      const sorvetesLocalStorage = JSON.parse(localStorage.getItem('sorvetes')) || [];
-      const updatedSorvetes = [...sorvetesLocalStorage];
-      updatedSorvetes[id] = { nome, quantidade, preco };
+    const sorvetesLocalStorage = JSON.parse(localStorage.getItem('sorvetes'));
+    sorvetesLocalStorage[id] = { nome, quantidade, preco };
 
-      localStorage.setItem('sorvetes', JSON.stringify(updatedSorvetes));
-      setMensagem("Sorvete editado com sucesso!");
+    localStorage.setItem('sorvetes', JSON.stringify(sorvetesLocalStorage));
+    setMensagem("Sorvete editado com sucesso!");
 
-      navigate("/");
-    } catch (error) {
-      console.error('Erro ao editar o sorvete: ', error);
-    }
+    navigate("/");
   };
 
   function voltar() {
@@ -83,7 +78,7 @@ const EditarSorvete = () => {
       <Barra />
       <h1>Editar Sorvete</h1>
       <form className="container mt-4">
-      <div className={`alert ${mensagem ? 'alert-success' : 'd-none'}`} role="alert">
+        <div className={`alert ${mensagem ? 'alert-success' : 'd-none'}`} role="alert">
           {mensagem}
         </div>
         <div className={`alert ${erro ? 'alert-danger' : 'd-none'}`} role="alert">

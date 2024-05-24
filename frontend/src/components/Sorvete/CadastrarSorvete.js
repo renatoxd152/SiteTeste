@@ -13,15 +13,15 @@ const Sorvetes = () => {
 
   const navigate = useNavigate();
 
-  const handleNome = (e) => {
+  function handleNome(e) {
     setNome(e.target.value);
   }
 
-  const handleQuantidade = (e) => {
+  function handleQuantidade(e) {
     setQuantidade(e.target.value);
   }
 
-  const handlePreco = (e) => {
+  function handlePreco(e) {
     setPreco(e.target.value);
   }
 
@@ -46,21 +46,17 @@ const Sorvetes = () => {
       return;
     }
 
-    try {
-      const novoSorvete = { nome, quantidade, preco };
+    const novoSorvete = { nome, quantidade, preco };
 
-      if (localStorage.getItem('sorvetes') === null)
-        localStorage.setItem('sorvetes', "[]");
+    if (localStorage.getItem('sorvetes') === null)
+      localStorage.setItem('sorvetes', "[]");
 
-      const sorvetesLocalStorage = JSON.parse(localStorage.getItem('sorvetes'));
-      sorvetesLocalStorage.push(novoSorvete);
-      localStorage.setItem('sorvetes', JSON.stringify(sorvetesLocalStorage));
-  
-      setMensagem("Sorvete cadastrado com sucesso!");
-      setErro("");
-    } catch (error) {
-      console.error('Erro ao cadastrar o sorvete!');
-    }
+    const sorvetesLocalStorage = JSON.parse(localStorage.getItem('sorvetes'));
+    sorvetesLocalStorage.push(novoSorvete);
+    localStorage.setItem('sorvetes', JSON.stringify(sorvetesLocalStorage));
+
+    setMensagem("Sorvete cadastrado com sucesso!");
+    setErro("");
   };
 
 	function voltar() {
