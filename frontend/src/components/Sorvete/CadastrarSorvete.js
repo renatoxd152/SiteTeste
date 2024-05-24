@@ -26,7 +26,7 @@ const Sorvetes = () => {
   }
 
   const handleCadastrarSorvete = async () => {
-    if (!nome || !quantidade || !preco) {
+    if (nome.trim() === "" || quantidade.trim() === "" || preco.trim() === "") {
       setErro("Por favor, preencha todos os campos.");
       return;
     }

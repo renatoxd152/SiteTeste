@@ -40,7 +40,7 @@ const EditarSorvete = () => {
   }
 
   async function handleEditarSorvete() {
-    if (!nome || !quantidade || !preco) {
+    if (nome.trim() === "" || quantidade.trim() === "" || preco.trim() === "") {
       setErro("Por favor, preencha todos os campos.");
       return;
     }
