@@ -25,7 +25,7 @@ const EditarSorvete = () => {
       setQuantidade(sorvete.quantidade);
       setPreco(sorvete.preco);
     }
-  }, []);
+  }, [id]);
 
   function handleNome(e) {
     setNome(e.target.value);
