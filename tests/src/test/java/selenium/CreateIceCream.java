@@ -18,4 +18,9 @@ public class CreateIceCream {
         driver.get("site-teste-renatoxd152s-projects.vercel.app");
     }
 
+    @AfterAll
+    public void tearDown(){
+        if (driver != null)
+            driver.quit();
+    }
 }
