@@ -16,7 +16,7 @@ public class CreateIceCream extends BaseTest{
     By precoField = By.xpath("//input[@class='form-control' and @type='number'][2]");
     By cadastrarButton = By.xpath("//div[@id='root']//button[text()='Cadastrar Sorvete']");
     @Test
-    @DisplayName("Clica em criar novo sorvete")
+    @DisplayName("Clica em criar novo sorvete e insere um sorvete valido")
     public void ClicarEmCriarNovoSorvete() throws InterruptedException {
         click(sorvetesMenuDropdown);
         wait.until(ExpectedConditions.visibilityOfElementLocated(cadatrarSorvete));
@@ -31,10 +31,12 @@ public class CreateIceCream extends BaseTest{
 
         find(quantidadeField).clear();
         find(quantidadeField).sendKeys(String.valueOf(quantidade));
+        wait.until(ExpectedConditions.textToBePresentInElementValue(quantidadeField, String.valueOf(quantidade)));
 
         find(precoField).clear();
         find(precoField).sendKeys(String.valueOf(preco));
-        //Thread.sleep(4000);
+        wait.until(ExpectedConditions.textToBePresentInElementValue(precoField, String.valueOf(preco)));
+
         click(cadastrarButton);
     }
 
