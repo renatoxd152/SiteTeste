@@ -1,5 +1,6 @@
 package selenium;
 
+import com.github.javafaker.Faker;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
@@ -15,6 +16,7 @@ public class BaseTest {
 
     protected WebDriver driver;
     protected WebDriverWait wait;
+    protected Faker faker;
 
     @BeforeEach
     public void setUp(){
@@ -28,6 +30,8 @@ public class BaseTest {
         driver.get("https://site-teste-renatoxd152s-projects.vercel.app");
 
         wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+
+        faker = new Faker();
     }
 
     @AfterEach
