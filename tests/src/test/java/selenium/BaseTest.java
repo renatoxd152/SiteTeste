@@ -13,7 +13,7 @@ import java.time.Duration;
 
 public class BaseTest {
 
-    protected static WebDriver driver;
+    protected WebDriver driver;
     protected WebDriverWait wait;
 
     @BeforeEach
@@ -31,7 +31,7 @@ public class BaseTest {
     }
 
     @AfterEach
-    public static void tearDown(){
+    public void tearDown(){
         if (driver != null)
             driver.quit();
     }
