@@ -7,10 +7,14 @@ import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class BaseTest {
 
     protected static WebDriver driver;
+    protected WebDriverWait wait;
 
     @BeforeEach
     public void setUp(){
@@ -22,6 +26,8 @@ public class BaseTest {
         driver = new EdgeDriver(options);
         driver.manage().window().maximize();
         driver.get("https://site-teste-renatoxd152s-projects.vercel.app");
+
+        wait = new WebDriverWait(driver, Duration.ofSeconds(3));
     }
 
     @AfterEach
