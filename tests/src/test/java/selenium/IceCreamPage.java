@@ -62,6 +62,10 @@ public class IceCreamPage extends BasePage {
         find(precoField).sendKeys(String.valueOf(preco));
         wait.until(ExpectedConditions.textToBePresentInElementValue(precoField, String.valueOf(preco)));
     }
+    public String getPreco() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(precoField));
+        return find(precoField).getAttribute("value");
+    }
 
     public void cadastra() {
         wait.until(ExpectedConditions.elementToBeClickable(cadastrarButton));
