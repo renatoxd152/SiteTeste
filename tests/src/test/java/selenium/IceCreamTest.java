@@ -91,5 +91,25 @@ public class IceCreamTest {
 
         assertTrue(iceCreamPage.getPreco().isEmpty());
     }
+    @Test
+    @DisplayName("Tentar criar sorvete com nome duplicado")
+    public void criarSorveteComNomeDuplicado() {
+        iceCreamPage.menu();
+        iceCreamPage.cadastraMenu();
+
+        iceCreamPage.setNome("Sorvete Teste");
+        iceCreamPage.setQuantidade("10");
+        iceCreamPage.setPreco("5.00");
+        iceCreamPage.cadastra();
+
+        iceCreamPage.setNome("Sorvete Teste");
+        iceCreamPage.setQuantidade("15");
+        iceCreamPage.setPreco("7.50");
+        iceCreamPage.cadastra();
+
+
+        String errorMessage = iceCreamPage.getErrorMessage();
+        assertEquals("Já existe um sorvete Sorvete Teste", errorMessage);
+    }
 
 }
