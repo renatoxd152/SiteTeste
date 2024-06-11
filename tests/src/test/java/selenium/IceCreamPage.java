@@ -51,6 +51,10 @@ public class IceCreamPage extends BasePage {
         find(quantidadeField).sendKeys(String.valueOf(quantidade));
         wait.until(ExpectedConditions.textToBePresentInElementValue(quantidadeField, String.valueOf(quantidade)));
     }
+    public String getQuantidade() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(quantidadeField));
+        return find(quantidadeField).getAttribute("value");
+    }
 
     public void addPreco() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(precoField));
