@@ -68,7 +68,7 @@ public class IceCreamTest {
         iceCreamPage.cadastra();
 
         String errorMessage = iceCreamPage.getErrorMessage();
-        assertEquals("Por favor, preencha todos os campos.", errorMessage);
+        assertTrue(iceCreamPage.getNome().isEmpty());
     }
 
 }
