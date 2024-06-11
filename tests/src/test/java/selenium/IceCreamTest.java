@@ -48,4 +48,16 @@ public class IceCreamTest {
         String successMessage = iceCreamPage.getSuccessMessage();
         assertEquals("Sorvete cadastrado com sucesso!", successMessage);
     }
+    @Test
+    @DisplayName("Tenta cadastrar sorvete com campos vazios")
+    public void CadastrarSorveteComCamposVazios() {
+        iceCreamPage.menu();
+        iceCreamPage.cadastraMenu();
+        iceCreamPage.cadastra();
+
+        String errorMessage = iceCreamPage.getErrorMessage();
+        assertEquals("Por favor, preencha todos os campos.", errorMessage);
+    }
+
+
 }
