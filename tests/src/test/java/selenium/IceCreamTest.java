@@ -9,6 +9,9 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 public class IceCreamTest {
     private WebDriver driver;
     private IceCreamPage iceCreamPage;
@@ -42,5 +45,7 @@ public class IceCreamTest {
         iceCreamPage.addQtd();
         iceCreamPage.addPreco();
         iceCreamPage.cadastra();
+        String successMessage = iceCreamPage.getSuccessMessage();
+        assertEquals("Sorvete cadastrado com sucesso!", successMessage);
     }
 }
