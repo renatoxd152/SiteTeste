@@ -67,8 +67,18 @@ public class IceCreamTest {
         iceCreamPage.addPreco();
         iceCreamPage.cadastra();
 
-        String errorMessage = iceCreamPage.getErrorMessage();
         assertTrue(iceCreamPage.getNome().isEmpty());
+    }
+    @Test
+    @DisplayName("Tenta cadastrar sorvete com campo 'quantidade' vazio")
+    public void CadastrarSorveteComCampoQuantidadeVazio() {
+        iceCreamPage.menu();
+        iceCreamPage.cadastraMenu();
+        iceCreamPage.addNome();
+        iceCreamPage.addPreco();
+        iceCreamPage.cadastra();
+
+        assertTrue(iceCreamPage.getQuantidade().isEmpty());
     }
 
 }
