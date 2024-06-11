@@ -79,4 +79,21 @@ public class IceCreamPage extends BasePage {
         wait.until(ExpectedConditions.visibilityOfElementLocated(errorMessage));
         return find(errorMessage).getText();
     }
+    public void setNome(String nome) {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(nomeField));
+        find(nomeField).clear();
+        find(nomeField).sendKeys(nome);
+    }
+
+    public void setQuantidade(String quantidade) {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(quantidadeField));
+        find(quantidadeField).clear();
+        find(quantidadeField).sendKeys(quantidade);
+    }
+
+    public void setPreco(String preco) {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(precoField));
+        find(precoField).clear();
+        find(precoField).sendKeys(preco);
+    }
 }
