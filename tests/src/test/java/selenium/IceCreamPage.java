@@ -42,7 +42,9 @@ public class IceCreamPage extends BasePage {
         wait.until(ExpectedConditions.visibilityOfElementLocated(nomeField));
         find(nomeField).sendKeys(nomeSorvete);
     }
-
+    public String getNome(){
+        return find(cadatrarSorvete).getText();
+    }
     public void addQtd() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(quantidadeField));
         find(quantidadeField).clear();

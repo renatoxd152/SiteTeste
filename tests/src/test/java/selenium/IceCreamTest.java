@@ -58,6 +58,17 @@ public class IceCreamTest {
         String errorMessage = iceCreamPage.getErrorMessage();
         assertEquals("Por favor, preencha todos os campos.", errorMessage);
     }
+    @Test
+    @DisplayName("Tenta cadastrar sorvete com campo 'nome' vazio")
+    public void CadastrarSorveteComCampoNomeVazio() {
+        iceCreamPage.menu();
+        iceCreamPage.cadastraMenu();
+        iceCreamPage.addQtd();
+        iceCreamPage.addPreco();
+        iceCreamPage.cadastra();
 
+        String errorMessage = iceCreamPage.getErrorMessage();
+        assertEquals("Por favor, preencha todos os campos.", errorMessage);
+    }
 
 }
