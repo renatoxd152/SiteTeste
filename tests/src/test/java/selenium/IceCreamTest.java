@@ -80,5 +80,16 @@ public class IceCreamTest {
 
         assertTrue(iceCreamPage.getQuantidade().isEmpty());
     }
+    @Test
+    @DisplayName("Tenta cadastrar sorvete com campo 'preço' vazio")
+    public void CadastrarSorveteComCampoPrecoVazio() {
+        iceCreamPage.menu();
+        iceCreamPage.cadastraMenu();
+        iceCreamPage.addNome();
+        iceCreamPage.addQtd();
+        iceCreamPage.cadastra();
+
+        assertTrue(iceCreamPage.getPreco().isEmpty());
+    }
 
 }
