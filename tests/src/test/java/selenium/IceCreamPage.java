@@ -21,6 +21,8 @@ public class IceCreamPage extends BasePage {
     By quantidadeField = By.xpath("//input[@class='form-control' and @type='number'][1]");
     By precoField = By.xpath("//input[@class='form-control' and @type='number'][2]");
     By cadastrarButton = By.xpath("//div[@id='root']//button[text()='Cadastrar Sorvete']");
+    By successMessage = By.xpath("//div[@id='root']//div[contains(text(), 'Sorvete cadastrado com sucesso!')]");
+    By errorMessage = By.xpath("//div[contains(@class, 'alert-danger')]");
 
     private WebElement find(By locator) {
         return driver.findElement(locator);
@@ -58,5 +60,13 @@ public class IceCreamPage extends BasePage {
     public void cadastra() {
         wait.until(ExpectedConditions.elementToBeClickable(cadastrarButton));
         find(cadastrarButton).click();
+    }
+    public String getSuccessMessage() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(successMessage));
+        return find(successMessage).getText();
+    }
+    public String getErrorMessage() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(errorMessage));
+        return find(errorMessage).getText();
     }
 }
