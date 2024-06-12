@@ -99,4 +99,15 @@ public class IceCreamPage extends BasePage {
         find(precoField).clear();
         find(precoField).sendKeys(preco);
     }
+
+    public void salvarSorveteNoLocalStorage(String nome, String quantidade, String preco) {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        String script = String.format(
+                "var sorvetes = JSON.parse(localStorage.getItem('sorvetes')) || [];" +
+                        "sorvetes.push({ nome: '%s', quantidade: '%s', preco: '%s' });" +
+                        "localStorage.setItem('sorvetes', JSON.stringify(sorvetes));",
+                nome, quantidade, preco
+        );
+        js.executeScript(script);
+    }
 }
