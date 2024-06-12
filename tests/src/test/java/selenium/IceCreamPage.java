@@ -135,4 +135,11 @@ public class IceCreamPage extends BasePage {
         find(precoField).sendKeys(String.valueOf(precoNegativo));
         wait.until(ExpectedConditions.textToBePresentInElementValue(precoField, String.valueOf(precoNegativo)));
     }
+
+    public void addQtdNeg() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(quantidadeField));
+        find(quantidadeField).clear();
+        find(quantidadeField).sendKeys(String.valueOf(quantidadeNegativa));
+        wait.until(ExpectedConditions.textToBePresentInElementValue(quantidadeField, String.valueOf(quantidadeNegativa)));
+    }
 }

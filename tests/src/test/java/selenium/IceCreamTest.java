@@ -150,4 +150,18 @@ public class IceCreamTest {
         String errorMessage = iceCreamPage.getErrorMessage();
         assertEquals("O preço não pode ser negativo.", errorMessage);
     }
+
+    @Test
+    @DisplayName("Tenta cadastrar sorvete com valor do campo 'quantidade' negativo")
+    public void CadastrarSorveteComCampoQuantidadeNegativo() {
+        iceCreamPage.menu();
+        iceCreamPage.cadastraMenu();
+        iceCreamPage.addNome();
+        iceCreamPage.addQtdNeg();
+        iceCreamPage.addPreco();
+        iceCreamPage.cadastra();
+
+        String errorMessage = iceCreamPage.getErrorMessage();
+        assertEquals("A quantidade não pode ser negativa.", errorMessage);
+    }
 }
