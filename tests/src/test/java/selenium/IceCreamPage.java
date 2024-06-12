@@ -26,7 +26,7 @@ public class IceCreamPage extends BasePage {
     By cadastrarButton = By.xpath("//div[@id='root']//button[text()='Cadastrar Sorvete']");
     By successMessage = By.xpath("//div[@id='root']//div[contains(text(), 'Sorvete cadastrado com sucesso!')]");
     By errorMessage = By.xpath("//div[contains(@class, 'alert-danger')]");
-
+    By primeiroAtualizarButton = By.xpath("//table[@class='table']//tbody//tr[1]//a[@class='btn btn-primary']");
     private WebElement find(By locator) {
         return driver.findElement(locator);
     }
@@ -109,5 +109,10 @@ public class IceCreamPage extends BasePage {
                 nome, quantidade, preco
         );
         js.executeScript(script);
+    }
+
+    public void clicarPrimeiroAtualizar() {
+        wait.until(ExpectedConditions.elementToBeClickable(primeiroAtualizarButton));
+        find(primeiroAtualizarButton).click();
     }
 }
