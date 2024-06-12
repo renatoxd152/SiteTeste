@@ -1,6 +1,7 @@
 package selenium;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -14,6 +15,8 @@ public class IceCreamPage extends BasePage {
     String nomeSorvete = faker.food().ingredient();
     int quantidade = faker.number().numberBetween(1, 100);
     double preco = faker.number().randomDouble(2, 1, 50);
+    double precoNegativo = faker.number().randomDouble(2, -50, -1);
+    int quantidadeNegativa = faker.number().numberBetween(-100, -1);
 
     By sorvetesMenuDropdown = By.xpath("//a[@id='sorvetesDropdown']");
     By cadatrarSorvete = By.xpath("//div[@id='root']//a[text()='Cadastrar Sorvetes']");
