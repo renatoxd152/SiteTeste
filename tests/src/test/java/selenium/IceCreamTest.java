@@ -4,6 +4,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
@@ -27,6 +28,9 @@ public class IceCreamTest {
         driver.manage().window().maximize();
         driver.get("https://site-teste-renatoxd152s-projects.vercel.app");
         iceCreamPage = new IceCreamPage(driver);
+
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.localStorage.clear();");
     }
 
     @AfterEach
