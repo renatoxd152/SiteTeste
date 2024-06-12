@@ -128,4 +128,11 @@ public class IceCreamPage extends BasePage {
         wait.until(ExpectedConditions.visibilityOfElementLocated(excluidoSuccess));
         return find(excluidoSuccess).getText();
     }
+
+    public void addPrecoNeg() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(precoField));
+        find(precoField).clear();
+        find(precoField).sendKeys(String.valueOf(precoNegativo));
+        wait.until(ExpectedConditions.textToBePresentInElementValue(precoField, String.valueOf(precoNegativo)));
+    }
 }

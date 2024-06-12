@@ -136,4 +136,18 @@ public class IceCreamTest {
         String excluirMessage = iceCreamPage.getExcluirMessage();
         assertTrue(excluirMessage.contains("Sorvete excluído com sucesso!"));
     }
+
+    @Test
+    @DisplayName("Tenta cadastrar sorvete com valor do campo 'preço' negativo")
+    public void CadastrarSorveteComCampoPrecoNegativo() {
+        iceCreamPage.menu();
+        iceCreamPage.cadastraMenu();
+        iceCreamPage.addNome();
+        iceCreamPage.addQtd();
+        iceCreamPage.addPrecoNeg();
+        iceCreamPage.cadastra();
+
+        String errorMessage = iceCreamPage.getErrorMessage();
+        assertEquals("O preço não pode ser negativo.", errorMessage);
+    }
 }
