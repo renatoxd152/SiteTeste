@@ -27,6 +27,9 @@ public class IceCreamPage extends BasePage {
     By successMessage = By.xpath("//div[@id='root']//div[contains(text(), 'Sorvete cadastrado com sucesso!')]");
     By errorMessage = By.xpath("//div[contains(@class, 'alert-danger')]");
     By primeiroAtualizarButton = By.xpath("//table[@class='table']//tbody//tr[1]//a[@class='btn btn-primary']");
+    By primeiroExcluirButton = By.xpath("//table[@class='table']//tbody//tr[1]//button[@class='btn btn-danger']");
+    By excluidoSuccess = By.xpath("//div[contains(@class, 'alert-success')]");
+
     private WebElement find(By locator) {
         return driver.findElement(locator);
     }
@@ -114,5 +117,15 @@ public class IceCreamPage extends BasePage {
     public void clicarPrimeiroAtualizar() {
         wait.until(ExpectedConditions.elementToBeClickable(primeiroAtualizarButton));
         find(primeiroAtualizarButton).click();
+    }
+
+    public void clicarPrimeiroExcluir() {
+        wait.until(ExpectedConditions.elementToBeClickable(primeiroExcluirButton));
+        find(primeiroExcluirButton).click();
+    }
+
+    public String getExcluirMessage() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(excluidoSuccess));
+        return find(excluidoSuccess).getText();
     }
 }

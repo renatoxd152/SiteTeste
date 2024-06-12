@@ -127,5 +127,13 @@ public class IceCreamTest {
         assertTrue(currentUrl.contains("/sorvete/0"), "A URL atual deve conter /sorvete/0");
     }
 
-
+    @Test
+    @DisplayName("Clica no botão de excluir o primeiro sorvete da lista")
+    public void excluiOPrimeiroSorvete() {
+        iceCreamPage.salvarSorveteNoLocalStorage("Nome" ,"5", "48");
+        driver.navigate().refresh();
+        iceCreamPage.clicarPrimeiroExcluir();
+        String excluirMessage = iceCreamPage.getExcluirMessage();
+        assertTrue(excluirMessage.contains("Sorvete excluído com sucesso!"));
+    }
 }
