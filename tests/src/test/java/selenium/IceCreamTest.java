@@ -116,4 +116,16 @@ public class IceCreamTest {
         assertEquals("Já existe um sorvete Sorvete Teste", errorMessage);
     }
 
+    @Test
+    @DisplayName("Clica no botão de atualizar do primeiro sorvete da lista e verifica se a página de edição foi carregada")
+    public void clicarPrimeiroAtualizar() {
+        iceCreamPage.salvarSorveteNoLocalStorage("Nome" ,"5", "48");
+        driver.navigate().refresh();
+        iceCreamPage.clicarPrimeiroAtualizar();
+
+        String currentUrl = driver.getCurrentUrl();
+        assertTrue(currentUrl.contains("/sorvete/0"), "A URL atual deve conter /sorvete/0");
+    }
+
+
 }
